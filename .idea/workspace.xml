@@ -13,6 +13,17 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="blade" />
+        <option value="Blade" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
@@ -97,9 +108,12 @@
       <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Vw2CrmclaGmIIjzC3aKcERXC6y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -108,18 +122,23 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../repositorio" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp7.3\htdocs\documents_repository\resources\views\admin\documents" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp7.3\htdocs\documents_repository\public\images" />
+      <recent name="C:\laragon\www\documents_repository\database\seeds" />
       <recent name="C:\laragon\www\documents_repository\resources\views\admin\base" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
   </component>
@@ -147,7 +166,10 @@
       <updated>1578149718649</updated>
       <workItem from="1578149758320" duration="667000" />
       <workItem from="1578150926740" duration="1536000" />
-      <workItem from="1578155999058" duration="4093000" />
+      <workItem from="1578155999058" duration="20754000" />
+      <workItem from="1578243650343" duration="7272000" />
+      <workItem from="1578251589855" duration="14593000" />
+      <workItem from="1578303410891" duration="4116000" />
     </task>
     <servers />
   </component>
@@ -159,37 +181,73 @@
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="222" y="18" key="#CLI_Interpreters/0.0.1280.728@0.0.1280.728" timestamp="1578155522690" />
-    <state x="374" y="108" key="FileChooserDialogImpl" timestamp="1578159591093">
+    <state x="232" y="21" key="#Notifications" timestamp="1578162730953">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state x="374" y="108" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1578159591093" />
-    <state width="1236" height="154" key="GridCell.Tab.0.bottom" timestamp="1578151032431">
+    <state x="232" y="21" key="#Notifications/0.0.1280.728@0.0.1280.728" timestamp="1578162730953" />
+    <state x="280" y="132" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1578160945437">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state width="1236" height="154" key="GridCell.Tab.0.bottom/0.0.1280.728@0.0.1280.728" timestamp="1578151032431" />
-    <state width="1236" height="154" key="GridCell.Tab.0.center" timestamp="1578151032431">
+    <state x="280" y="132" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1280.728@0.0.1280.728" timestamp="1578160945437" />
+    <state x="370" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578308748397">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state width="1236" height="154" key="GridCell.Tab.0.center/0.0.1280.728@0.0.1280.728" timestamp="1578151032431" />
-    <state width="1236" height="154" key="GridCell.Tab.0.left" timestamp="1578151032430">
+    <state x="370" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1578308748397" />
+    <state x="374" y="108" key="FileChooserDialogImpl" timestamp="1578259074603">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state width="1236" height="154" key="GridCell.Tab.0.left/0.0.1280.728@0.0.1280.728" timestamp="1578151032430" />
-    <state width="1236" height="154" key="GridCell.Tab.0.right" timestamp="1578151032431">
+    <state x="374" y="108" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1578259074603" />
+    <state width="1236" height="196" key="GridCell.Tab.0.bottom" timestamp="1578251489744">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state width="1236" height="154" key="GridCell.Tab.0.right/0.0.1280.728@0.0.1280.728" timestamp="1578151032431" />
-    <state x="475" y="282" key="NewPhpFileDialog" timestamp="1578158934627">
+    <state width="1236" height="196" key="GridCell.Tab.0.bottom/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state width="1236" height="196" key="GridCell.Tab.0.center" timestamp="1578251489744">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state x="475" y="282" key="NewPhpFileDialog/0.0.1280.728@0.0.1280.728" timestamp="1578158934627" />
-    <state x="91" y="0" key="SettingsEditor" timestamp="1578157419227">
+    <state width="1236" height="196" key="GridCell.Tab.0.center/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state width="1236" height="196" key="GridCell.Tab.0.left" timestamp="1578251489743">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state x="91" y="0" key="SettingsEditor/0.0.1280.728@0.0.1280.728" timestamp="1578157419227" />
+    <state width="1236" height="196" key="GridCell.Tab.0.left/0.0.1280.728@0.0.1280.728" timestamp="1578251489743" />
+    <state width="1236" height="196" key="GridCell.Tab.0.right" timestamp="1578251489744">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state width="1236" height="196" key="GridCell.Tab.0.right/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state width="1236" height="196" key="GridCell.Tab.1.bottom" timestamp="1578251489744">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state width="1236" height="196" key="GridCell.Tab.1.bottom/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state width="1236" height="196" key="GridCell.Tab.1.center" timestamp="1578251489744">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state width="1236" height="196" key="GridCell.Tab.1.center/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state width="1236" height="196" key="GridCell.Tab.1.left" timestamp="1578251489744">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state width="1236" height="196" key="GridCell.Tab.1.left/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state width="1236" height="196" key="GridCell.Tab.1.right" timestamp="1578251489744">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state width="1236" height="196" key="GridCell.Tab.1.right/0.0.1280.728@0.0.1280.728" timestamp="1578251489744" />
+    <state x="475" y="282" key="NewPhpFileDialog" timestamp="1578160764236">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state x="475" y="282" key="NewPhpFileDialog/0.0.1280.728@0.0.1280.728" timestamp="1578160764236" />
+    <state x="91" y="0" key="SettingsEditor" timestamp="1578163341352">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state x="91" y="0" key="SettingsEditor/0.0.1280.728@0.0.1280.728" timestamp="1578163341352" />
+    <state width="525" height="446" key="SwitcherDM" timestamp="1578258018668">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state width="525" height="446" key="SwitcherDM/0.0.1280.728@0.0.1280.728" timestamp="1578258018668" />
     <state x="347" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1578156028404">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="347" y="190" key="com.intellij.ide.util.TipDialog/0.0.1280.728@0.0.1280.728" timestamp="1578156028404" />
+    <state x="303" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1578311978974">
+      <screen x="0" y="0" width="1280" height="728" />
+    </state>
+    <state x="303" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1280.728@0.0.1280.728" timestamp="1578311978974" />
   </component>
 </project>

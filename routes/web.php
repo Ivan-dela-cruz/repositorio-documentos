@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('admin.base.base');
+    return view('admin.users.create');
 });
+Route::resource('users', 'admin\UserController');
+Route::resource('categories', 'admin\CategoryController');
+Route::resource('documents', 'admin\DocumentsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
