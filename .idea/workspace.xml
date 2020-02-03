@@ -127,13 +127,13 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp7.3\htdocs\documents_repository\resources\views\admin\documents" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp7.3\htdocs\documents_repository\public\images" />
       <recent name="C:\laragon\www\documents_repository\database\seeds" />
       <recent name="C:\laragon\www\documents_repository\resources\views\admin\base" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp7.3\htdocs\documents_repository\resources\views\admin\documents" />
     </key>
   </component>
   <component name="RunManager">
@@ -169,7 +169,9 @@
       <workItem from="1578155999058" duration="20754000" />
       <workItem from="1578243650343" duration="7272000" />
       <workItem from="1578251589855" duration="14593000" />
-      <workItem from="1578303410891" duration="4116000" />
+      <workItem from="1578303410891" duration="4715000" />
+      <workItem from="1579393144617" duration="2940000" />
+      <workItem from="1580673900205" duration="7121000" />
     </task>
     <servers />
   </component>

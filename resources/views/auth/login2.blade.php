@@ -32,7 +32,7 @@
                             <img src="{{asset('images/logo.svg')}}" alt="logo">
                         </div>
                         <h4>¡Hola! empecemos
-                        </h4>
+                            </h4>
                         <h6 class="font-weight-light">Inicia sesión para continuar.</h6>
 
 

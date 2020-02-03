@@ -15,13 +15,13 @@
 @endif
 <div class="form-group">
     {{ Form::label('description', 'Resumen') }}
-    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
+    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'simpleMde']) }}
 </div>
 @if($errors->has('description'))
     <label class="text-danger">{{$errors->first('description')}} </label>
 @endif
 <div class="form-group">
-    {{ Form::label('file', 'Imagen') }}
+    {{ Form::label('file', 'Documento') }}
     {{ Form::file('file',  ['class' => 'file-upload-default']) }}
     {{---<input type="file" name="img[]" class="file-upload-default">--}}
     <div class="input-group col-xs-12">
@@ -40,8 +40,11 @@
 
 <div class="form-group">
     {{ Form::label('body', 'Contenido') }}
-    {{ Form::textarea('body', null, ['class' => 'form-control']) }}
+    {{ Form::textarea('body', null, ['class' => 'form-control','id'=>'summernoteExample']) }}
 </div>
+
+
+
 @if($errors->has('body'))
     <label class="text-danger">{{$errors->first('body')}} </label>
 @endif
@@ -63,3 +66,4 @@
 <div class="form-group">
     {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 </div>
+

@@ -62,7 +62,7 @@ class DocumentsController extends Controller
         $document->name = $request->name;
         $document->slug = Str::slug($request->name,'-') ;
         $document->description = $request->description;
-        $document->body = $request->name;
+        $document->body = $request->body;
         $document->status = $request->status;
         $document->save();
 

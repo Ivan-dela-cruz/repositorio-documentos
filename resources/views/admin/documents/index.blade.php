@@ -32,7 +32,7 @@
                 <h4 class="card-title">Documenos registrados</h4>
 
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>
@@ -43,9 +43,6 @@
                             </th>
                             <th>
                                 Categoría
-                            </th>
-                            <th>
-                                Descripción
                             </th>
                             <th>
                                 Estado
@@ -60,6 +57,7 @@
                         @foreach($documents as $document)
                             <tr>
                                 <td class="py-1">
+
 
                                     <a href="{{ route('documents.show', $document->id) }}" class="">
                                         <img src="{{asset('images/pdf.png')}}" alt="image"/>
@@ -79,14 +77,11 @@
                                     {{$document->category->name}}
                                 </td>
                                 <td>
-                                    {{$document->description }}
-                                </td>
-                                <td>
                                     {{$document->status}}
                                 </td>
                                 <td width="20">
 
-                                    <a href="{{ route('documents.edit', $document->id) }}" class="btn btn-sm btn-succes">
+                                    <a href="{{ route('documents.edit', $document->id) }}" class="btn btn-sm btn-success">
                                         <i class="mdi mdi-folder-edit menu-icon"></i>
                                         <span class="menu-title">Editar</span>
                                     </a>

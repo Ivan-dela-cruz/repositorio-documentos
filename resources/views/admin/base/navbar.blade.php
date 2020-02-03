@@ -54,4 +54,33 @@
             </ul>
         </div>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false"
+           aria-controls="editors">
+            <i class="mdi mdi-account-off menu-icon"></i>
+            <span class="menu-title">Sesión</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="editors">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+
+
+        </div>
+    </li>
+
+
 </ul>
+

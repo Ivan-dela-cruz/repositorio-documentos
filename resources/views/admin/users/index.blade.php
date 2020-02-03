@@ -60,23 +60,28 @@
                         @foreach($users as $user)
                             <tr>
                                 <td class="py-1">
+                                    @if($user->image)
 
-                                    <img src="{{url($user->image)}}" alt="image"/>
+                                        <img src="{{url($user->image)}}" alt="image"/>
+                                    @else
+                                        <img src="{{asset('images/faces/face7.jpg')}}" alt="image"/>
+                                    @endif
+
 
                                 </td>
                                 <td>
                                     {{$user->name ."  ".$user->lastname}}
                                 </td>
                                 <td>
-                                   {{-- <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar"
-                                             style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                             aria-valuemax="100"></div>
-                                    </div>--}}
+                                    {{-- <div class="progress">
+                                         <div class="progress-bar bg-success" role="progressbar"
+                                              style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                                              aria-valuemax="100"></div>
+                                     </div>--}}
                                     {{$user->gender}}
                                 </td>
                                 <td>
-                                   {{$user->description }}
+                                    {{$user->description }}
                                 </td>
                                 <td>
                                     {{$user->email}}

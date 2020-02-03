@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="faq-section">
                         <div class="container-fluid bg-success py-2">
-                            <p class="mb-0 text-white">Section 1</p>
+                            <p class="mb-0 text-white">{{$document->category->name}}</p>
                         </div>
                         <div id="accordion-1" class="accordion">
                             <div class="card">
@@ -47,7 +47,7 @@
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                                      data-parent="#accordion-1">
                                     <div class="card-body">
-                                        <p class="mb-0">{{$document->description}}</p>
+                                        <p class="mb-0">{!! $document->description !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                      data-parent="#accordion-1">
                                     <div class="card-body">
-                                        <p class="mb-0">{{$document->body}}.</p>
+                                        {!!$document->body  !!}
                                     </div>
                                 </div>
                             </div>
@@ -91,4 +91,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

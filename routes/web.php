@@ -12,12 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('admin.users.create');
+    return redirect(route('login'));
 });
 Route::resource('users', 'admin\UserController');
 Route::resource('categories', 'admin\CategoryController');
 Route::resource('documents', 'admin\DocumentsController');
-
+Route::get('/user', function () {
+    return view('user.base.base');
+})->name('user');
+Route::resource('user-documents', 'user\DocumentsUserController');
+Route::get('query-category/{id}','user\DocumentsUserController@queryCategory')->name('query-category');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
