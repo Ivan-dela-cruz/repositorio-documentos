@@ -27,9 +27,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-
                         <div class="col-10">
-
                             {!! Form::open(['route' => 'user-documents', 'method'=>'GET','autocomplete'=>'off','role'=>'search']) !!}
                             <div class="form-group d-flex">
                                 <input name="query" id="inputOrden" type="text" class="form-control"
@@ -38,33 +36,30 @@
                                 <button class="btnSearchOrden btn btn-primary ml-3" type="submit">Buscar</button>
                             </div>
                             {!! Form::close() !!}
-
-
                         </div>
+                        <div class="col-12 results">
+                            <div class="pt-4 border-bottom">
+                                <h1 class="d-block h3">{{$document->name}}</h1>
+                                <a class="page-url text-primary"
+                                   href="{{route('query-category',$document->category->id)}}">{{$document->category->name}}</a>
+                                <hr>
+                                <h3 class="d-block h4">Resumen</h3>
+                                <p>{!! $document->description !!}</p>
+                                <hr>
+                                <h3 class="d-block h4">Contenido</h3>
+                                <p>{!!  $document->body!!}</p>
+                                @guest()
+                                @else
+                                    <hr>
+                                    <a href="{{route('download-document',$document->id)}}" class="btn btn-success btn-lg align-bottom"><i class="mdi mdi-download"></i>
+                                        Descargarchivo pdf
+                                    </a>
+                                @endguest
+                                <hr>
+                                <iframe width="850px" height="600px" src="{{url($document->file)}}" frameborder="0"></iframe>
 
-
-                        @if($documents->count()>0)
-                            <div class="col-12 mb-5">
-                                <h4>Resultados de la búsqueda para "{{$query}}"</h4>
-                                <p class="text-muted">Aproximadamente ({{$documents->count()}}) resultados</p>
                             </div>
-                            @foreach($documents as $document)
-                                <div class="col-12 results">
-                                    <div class="pt-4 border-bottom">
-                                        <a class="d-block h4"
-                                           href="{{route('show-category',$document->id)}}">{{$document->name}}</a>
-                                        <a class="page-url text-primary"
-                                           href="{{route('query-category',$document->category->id)}}">{{$document->category->name}}</a>
-                                        <p>{{$document->description}}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                            {{$documents->render()}}
-                        @else
-                            <div class="col-12 mb-5">
-                                <h2>No se encontrarón artículos relacionados<u class="ml-2"></u></h2>
-                            </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>

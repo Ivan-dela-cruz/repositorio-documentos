@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-4 font-weight-light">
-                                ¿No tengo cuenta? <a href="register.html" class="text-primary">Create</a>
+                                ¿No tengo cuenta? <a href="{{route('register-user')}}" class="text-primary">Create</a>
                             </div>
                         </form>
 

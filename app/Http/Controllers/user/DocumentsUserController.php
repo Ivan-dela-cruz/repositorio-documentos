@@ -14,27 +14,52 @@ class DocumentsUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $documents = Documents::orderBy('id', 'DESC')->paginate(3);
-        $categories = Category::all();
+        $query = trim($request->get('query'));
+        if ($query != '') {
+            $documents = Documents::orderBy('id', 'DESC')
+                ->where('name', 'like', '%' . $query . '%')->paginate(3);
+            $categories = Category::all();
+            return view('user.search.search-results', compact('documents', 'categories','query'));
+        }
+        else{
+            $query ="";
+            $categories = Category::all();
+            $documents = Documents::orderBy('id', 'DESC')->paginate(3);
 
-        return view('user.search.search-results',compact('documents','categories'));
+            return view('user.search.search-results', compact('documents', 'categories','query'));
+        }
+
+
+       // $documents = Documents::orderBy('id', 'DESC')->paginate(3);
+       // $categories = Category::all();
+
+
     }
 
 
     public function queryCategory($id)
     {
-        if($id!=0){
-            $documents = Documents::orderBy('id', 'DESC')->where('id_category',$id)->paginate(3);
-        }else{
+        if ($id != 0) {
+            $documents = Documents::orderBy('id', 'DESC')->where('id_category', $id)->paginate(3);
+        } else {
             $documents = Documents::orderBy('id', 'DESC')->paginate(3);
         }
 
         $categories = Category::all();
+        $query ="";
 
-        return view('user.search.search-results',compact('documents','categories'));
+        return view('user.search.search-results', compact('documents', 'categories','query'));
     }
+
+    public function downloadDocument($id)
+    {
+        $document = Documents::find($id);
+        $rutaPdf = $document->file;
+        return response()->download($rutaPdf, $document->name . ".pdf");
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +73,7 @@ class DocumentsUserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -59,18 +84,24 @@ class DocumentsUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        if ($id != 0) {
+            $document = Documents::find($id);
+        }
+        $categories = Category::all();
+        $query ="";
+
+        return view('user.search.show', compact('document', 'categories','query'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -81,8 +112,8 @@ class DocumentsUserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,7 +124,7 @@ class DocumentsUserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

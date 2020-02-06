@@ -22,7 +22,7 @@ class DocumentsController extends Controller
     {
         $documents = Documents::orderBy('id', 'DESC')->paginate(3);
 
-        return view('admin.documents.index',compact('documents'));
+        return view('admin.documents.index', compact('documents'));
     }
 
     /**
@@ -60,7 +60,7 @@ class DocumentsController extends Controller
         $document->id_category = $request->id_category;
         $document->id_user = $request->user_id;
         $document->name = $request->name;
-        $document->slug = Str::slug($request->name,'-') ;
+        $document->slug = Str::slug($request->name, '-');
         $document->description = $request->description;
         $document->body = $request->body;
         $document->status = $request->status;
@@ -73,7 +73,7 @@ class DocumentsController extends Controller
         if ($request->file('file')) {
 
             $archivo = $request->file('file');
-            $nombre_archivo = $nombreArchivos ."-" . time() . '.' . $archivo->getClientOriginalExtension();
+            $nombre_archivo = $nombreArchivos . "-" . time() . '.' . $archivo->getClientOriginalExtension();
             $r2 = Storage::disk('documents')->put(utf8_decode($nombre_archivo), \File::get($archivo));
             $ruta_archivo = "storage/documents/" . $nombre_archivo;
         } else {
@@ -95,7 +95,7 @@ class DocumentsController extends Controller
     {
         $document = Documents::find($id);
 
-        return view('admin.documents.show',compact('document'));
+        return view('admin.documents.show', compact('document'));
     }
 
     /**
@@ -106,7 +106,10 @@ class DocumentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $document = Documents::find($id);
+
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('admin.documents.edit', compact('categories', 'document'));
     }
 
     /**
@@ -118,7 +121,43 @@ class DocumentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_category' => 'required|integer',
+            'name' => 'required',
+            'description' => 'required',
+            'body' => 'required',
+            'status' => 'required|in:BORRADOR,COMPLETADO,PROCESO',
+            'file' => 'file|mimes:pdf',
+        ]);
+
+        //CREAMOS UN NUEVO DOCUMENTO
+        $document = Documents::find($id);
+        $document->id_category = $request->id_category;
+        $document->id_user = $request->user_id;
+        $document->name = $request->name;
+        $document->slug = Str::slug($request->name, '-');
+        $document->description = $request->description;
+        $document->body = $request->body;
+        $document->status = $request->status;
+        $document->save();
+
+
+
+        $ruta_archivo = "vacio";
+        //OBTENEMOS EL NOMBRE QUE LLEVARA LOS ARCHIVOS  EN BASE AL TITULO DE la foto PERO SIN ESPACIOS
+        $nombreArchivos = Str::slug($request->name, '-');
+        if ($request->file('file')) {
+            $this->deletePdf($document->id);
+            $archivo = $request->file('file');
+            $nombre_archivo = $nombreArchivos . "-" . time() . '.' . $archivo->getClientOriginalExtension();
+            $r2 = Storage::disk('documents')->put(utf8_decode($nombre_archivo), \File::get($archivo));
+            $ruta_archivo = "storage/documents/" . $nombre_archivo;
+            $document->file = $ruta_archivo;
+            $document->save();
+        }
+
+
+        return redirect()->route('documents.index')->with('info', 'Entrada actualizada con éxito');
     }
 
     /**
@@ -129,8 +168,20 @@ class DocumentsController extends Controller
      */
     public function destroy($id)
     {
-        $document = Documents::find($id)->delete();
+        $document = Documents::find($id);
+        $this->deletePdf($document->id);
+        $document->delete();
+
 
         return back()->with('info', 'Eliminado correctamente');
+    }
+
+    public function deletePdf($id)
+    {
+        $document = Documents::find($id);
+        $url_pdf = $document->file;
+        $rs = File::delete($url_pdf);
+        $document->file = "";
+        $document->save();
     }
 }

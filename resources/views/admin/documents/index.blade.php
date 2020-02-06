@@ -81,7 +81,8 @@
                                 </td>
                                 <td width="20">
 
-                                    <a href="{{ route('documents.edit', $document->id) }}" class="btn btn-sm btn-success">
+                                    <a href="{{ route('documents.edit', $document->id) }}"
+                                       class="btn btn-sm btn-success">
                                         <i class="mdi mdi-folder-edit menu-icon"></i>
                                         <span class="menu-title">Editar</span>
                                     </a>
