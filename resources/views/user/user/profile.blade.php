@@ -13,7 +13,7 @@
                                     <h3>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <a href="#" class="btn btn-success mr-1">Editar</a>
+                                    <a href="{{route('edit-profile')}}" class="btn btn-success mr-1">Editar</a>
                                     <a class="btn btn-success" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

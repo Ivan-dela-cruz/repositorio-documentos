@@ -5,8 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Category;
 use App\Document;
 use App\Documents;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use File;
@@ -20,9 +22,25 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        $documents = Documents::orderBy('id', 'DESC')->paginate(3);
 
-        return view('admin.documents.index', compact('documents'));
+        $id = Auth::id();
+        $user = User::find($id);
+        $rol = $user->roles->implode('name', ', ');
+
+        if ($rol=='admin'){
+            $documents = Documents::orderBy('id', 'DESC')->paginate(3);
+            return view('admin.documents.index', compact('documents'));
+        }
+        if ($rol=='user'){
+
+            $documents = Documents::orderBy('id', 'DESC')->where('id_user',$id)->paginate(3);
+            return view('admin.documents.index', compact('documents'));
+        }
+
+
+
+
+
     }
 
     /**

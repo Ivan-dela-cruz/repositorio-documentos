@@ -11,34 +11,48 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect(route('user-documents'));
-});
+
 Route::resource('users', 'admin\UserController');
-Route::resource('categories', 'admin\CategoryController');
-Route::resource('documents', 'admin\DocumentsController');
 
-Route::get('register-user','admin\UserController@registerUser')->name('register-user');
-Route::get('profile-user','admin\UserController@profileUser')->name('profile-user');
 
-Route::get('/user', function () {
-    return view('user.base.base');
-})->name('user');
 
+
+///<<<<<=====================GRUPO DE RUTAS PARA USUARIOS UTENTICADOS=====>>>>>
 Route::middleware('auth')->group(function () {
     Route::get('download-document/{id}', 'user\DocumentsUserController@downloadDocument')->name('download-document');
+    Route::resource('documents', 'admin\DocumentsController');
+    Route::get('edit-profile','admin\UserController@editUser')->name('edit-profile');
+    Route::get('profile-user','admin\UserController@profileUser')->name('profile-user');
+
 
 });
+
+
+
+//rutas privadas para administradores
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('categories', 'admin\CategoryController');
+});
+
+//rutas privadas para usuarios
+Route::group(['middleware' => ['role:user']], function () {
+
+});
+
+
+//<<<=================================RUTAS PUBLICAS ===========================================>>>>>>>>>>>>>>>>
+//rutas para listas todas los articulos
 Route::get('user-documents', 'user\DocumentsUserController@index')->name('user-documents');
+//rutas filtar categoria
 Route::get('query-category/{id}', 'user\DocumentsUserController@queryCategory')->name('query-category');
-
+//rutar ver por categoria
 Route::get('show-category/{id}', 'user\DocumentsUserController@show')->name('show-category');
-
-
-///rutas usuarios
+///ruta para registrar usuarios
 Route::post('resgiter-user', 'admin\UserController@RegisterNewUser')->name('resgiter-user');
+Route::get('register-user','admin\UserController@registerUser')->name('register-user');
 
-
+//ruta inicio
+Route::get('/home', function (){return redirect()->route('/');})->name('home');
+Route::get('/', function () {return redirect(route('user-documents'));});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

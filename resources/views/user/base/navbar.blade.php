@@ -28,6 +28,23 @@
                                 <img src="{{asset('images/user.png')}}" alt="profile"/>
                             </a>
                             <span class="caret">  {{ Auth::user()->name }}   </span>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                 aria-labelledby="profileDropdown">
+                                <a class="dropdown-item">
+                                    <i class="mdi mdi-settings text-primary"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="mdi mdi-logout text-primary"></i>
+                                    Cerrar sesión
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         @else
                             <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
                                 <img src="{{Auth::user()->image}}" alt="profile"/>
@@ -39,10 +56,16 @@
                                     <i class="mdi mdi-settings text-primary"></i>
                                     Settings
                                 </a>
-                                <a href="{{route('logout')}}" class="dropdown-item">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                     <i class="mdi mdi-logout text-primary"></i>
-                                    Salir
+                                    Cerrar sesión
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         @endif
 

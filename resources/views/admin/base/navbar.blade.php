@@ -1,10 +1,11 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('documents.index')}}">
             <i class="mdi mdi-shield-half-full menu-icon"></i>
             <span class="menu-title">Panel de control</span>
         </a>
     </li>
+    @role('admin')
     <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
            aria-controls="ui-basic">
@@ -38,48 +39,57 @@
             </ul>
         </div>
     </li>
+    @else
 
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false"
-           aria-controls="editors">
-            <i class="mdi mdi-pencil menu-icon"></i>
-            <span class="menu-title">Documentos</span>
-            <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="editors">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{route('documents.create')}}">Nuevo</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('documents.index')}}">Archivos</a>
-                </li>
-            </ul>
-        </div>
-    </li>
+        @endrole
 
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false"
-           aria-controls="editors">
-            <i class="mdi mdi-account-off menu-icon"></i>
-            <span class="menu-title">Sesión</span>
-            <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="editors">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
+
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false"
+               aria-controls="editors">
+                <i class="mdi mdi-pencil menu-icon"></i>
+                <span class="menu-title">Documentos</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="editors">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="{{route('documents.create')}}">Nuevo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('documents.index')}}">Archivos</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a  class="nav-link" href="{{route('user-documents')}}" >
+                <i class="mdi mdi-file-document menu-icon"></i>
+                <span class="menu-title">Ver publicaciones</span>
+            </a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false"
+               aria-controls="editors">
+                <i class="mdi mdi-account-off menu-icon"></i>
+                <span class="menu-title">Sesión</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="editors">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+                            {{ __('Logout') }}
+                        </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
-
-
-        </div>
-    </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </li>
 
 
 </ul>

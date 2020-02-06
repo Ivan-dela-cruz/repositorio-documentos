@@ -58,6 +58,30 @@
 <script src="{{'js/template.js'}}"></script>
 <script src="{{'js/settings.js'}}"></script>
 <script src="{{'js/todolist.js'}}"></script>
+
+
+<script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
+<script src="{{asset('js/off-canvas.js')}}"></script>
+<script src="{{asset('js/hoverable-collapse.js')}}"></script>
+<script src="{{asset('js/template.js')}}"></script>
+<script src="{{asset('js/settings.js')}}"></script>
+<script src="{{asset('js/todolist.js')}}"></script>
+<script src="{{asset('vendors/chart.js/Chart.min.js')}}"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>
+
+
+<script src="{{asset('vendors/typeahead.js/typeahead.bundle.min.js')}}"></script>
+<script src="{{asset('vendors/select2/select2.min.js')}}"></script>
+<script src="{{asset('js/file-upload.js')}}"></script>
+<script src="{{asset('js/typeahead.js')}}"></script>
+<script src="{{asset('js/select2.js')}}"></script>
+
+
+<script src="{{asset('vendors/summernote/dist/summernote-bs4.min.js')}}"></script>
+<script src="{{asset('vendors/tinymce/tinymce.min.js')}}"></script>
+<script src="{{asset('vendors/quill/quill.min.js')}}"></script>
+<script src="{{asset('vendors/simplemde/simplemde.min.js')}}"></script>
+<script src="{{asset('js/editorDemo.js')}}"></script>
 <
 </body>
 

@@ -6,10 +6,12 @@ use App\User;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use File;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -102,7 +104,7 @@ class UserController extends Controller
         } else {
             $user->assignRole('user');
         }
-        return redirect()->route('users.create');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -127,6 +129,13 @@ class UserController extends Controller
         //
     }
 
+    public function editUser()
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+        return view('user.user.edit', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -136,7 +145,42 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'last_name' => 'required',
+            'name' => 'required', Rule::unique('users')->ignore($id),
+            'email' => 'required|string|email|max:255',Rule::unique('users')->ignore($id),
+            'born' => 'required',
+
+        ]);
+        //CREAMOS UN NUEVO OBJETO USUARIO
+        $user = User::find($id);
+        //ASIGNACION DE VALORES A LOS ATRIBUTOS DE LA CLASE USER
+        $user->name = $request->name;;
+        $user->last_name = $request->last_name;
+        $user->description = $request->description;
+        $user->gender = $request->gender;
+        $user->born = $request->born;
+        $user->email = $request->email;
+        if($request->password != null ){
+            //CIFRADO DE LA CONTRASEÑA
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        if ($request->file('image')) {
+            //OBTENEMOS EL NOMBRE QUE LLEVARA LOS ARCHIVOS  EN BASE AL TITULO DE la foto PERO SIN ESPACIOS
+            $nombreArchivos = Str::slug($request->name, '-');
+            $archivo = $request->file('image');
+            $this->deletePhoto($user->id);
+            $nombre_archivo = 'profile-' . time() . '.' . $archivo->getClientOriginalExtension();
+            $r2 = Storage::disk('photos')->put(utf8_decode($nombre_archivo), \File::get($archivo));
+            $ruta_archivo = "storage/photo/" . $nombre_archivo;
+            $user->image = $ruta_archivo;
+            $user->save();
+        }
+
+
+        return redirect()->route('profile-user');
     }
 
     /**
@@ -214,5 +258,14 @@ class UserController extends Controller
         $user->assignRole('user');
 
         return redirect()->route('login');
+    }
+
+    public function deletePhoto($id)
+    {
+        $user = User::find($id);
+        $url_pdf = $user->image;
+        $rs = File::delete($url_pdf);
+        $user->image = "";
+        $user->save();
     }
 }
